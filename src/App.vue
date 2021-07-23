@@ -44,7 +44,17 @@
   </div>
   <div class="show-sec">
     <div v-for="(item, i) in jobs" :key="i">
-      <div v-if="!item.applied && item.title && item.description && item.location && item.link" class="container" id="notapplied">
+      <div
+        v-if="
+          !item.applied &&
+          item.title &&
+          item.description &&
+          item.location &&
+          item.link
+        "
+        class="container"
+        id="notapplied"
+      >
         <div>
           <p>👩🏽‍💻 {{ item.title }}</p>
           <p>📍 {{ item.location }}</p>
@@ -58,7 +68,17 @@
         </div>
       </div>
 
-      <div v-if="item.applied && item.title && item.description && item.location && item.link" class="container" id="applied">
+      <div
+        v-if="
+          item.applied &&
+          item.title &&
+          item.description &&
+          item.location &&
+          item.link
+        "
+        class="container"
+        id="applied"
+      >
         <div>
           <span style="background: yellow"> APPLIED </span>
           <p>👩🏽‍💻 {{ item.title }}</p>
@@ -80,7 +100,7 @@
 export default {
   data: function () {
     return {
-      jobs: this.getJobs(), //we are initializing jobs to whaetever is in the local storage
+      jobs: this.getJobs(), //initializing jobs to whats in the local storage
       title: "",
       location: "",
       description: "",
@@ -89,9 +109,7 @@ export default {
   },
 
   watch: {
-    //it watches for changes in our data; and when we see changes the handler follows the intruction given
     jobs: {
-      //and in this case it is to push jobs if jobs is changed in any way; (so no need for us to manually push like before since this handles it)
       handler() {
         this.pushJobs();
       },
@@ -130,11 +148,10 @@ export default {
     },
 
     toggleApplied(theJob) {
-      theJob.applied = !theJob.applied; //DEEP = goes into the array, into the job object, into the applied property, into the booolean value and its like oh that changed, and saves the latest value to the local storage.
+      theJob.applied = !theJob.applied;
     },
 
     dltJob(theJob) {
-      //the watcher watches for changes ONLY. (takes the way the jobs looks like now and syncs that) and SAVES THE LATEST COPY TO LOCAL STORAGE!!!
       this.jobs = this.jobs.filter(function (item) {
         return item !== theJob;
       });
