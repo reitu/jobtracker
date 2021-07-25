@@ -1,4 +1,5 @@
-# [JobTracker](https://myjobtracker.web.app)
+# JobTracker
+[myjobtracker.web.app](https://myjobtracker.web.app)
 
 ## Project setup
 ```
